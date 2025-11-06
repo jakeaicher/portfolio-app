@@ -174,14 +174,14 @@ export default function Home() {
               className="w-full h-0 absolute bottom-0 left-0 right-0 group-hover:h-full transition-[height] duration-500 bg-slate-100"
               >
                 <div className="w-full h-full flex flex-col justify-evenly p-10">
-                  <div className="text-[Roboto] font-bold text-2xl">
+                  <div className="font-[Roboto] font-bold text-2xl">
                     Sending My Resume via Carrier Pigeon
                   </div>
                   <div className="w-full h-1 scale-x-0 group-hover:scale-x-100 ease-in duration-500 transition-transform  bg-slate-200 rounded-full ">
 
                   </div>
 
-                  <div className="text-[Roboto] text-xl">
+                  <div className="font-[Roboto] text-xl">
                     Designing a shoe for MSCHF and sending it via carrier pigeon 
                   </div>
 
@@ -203,14 +203,14 @@ export default function Home() {
             <CardImage src="/work/Pigeon/Bird.png" imgScalePercentage={{initial:100,zoom:128}} imgTranslateOnHover={{x:'10', y:'-50'}} rotation={0} rotationOnHover={-10}/>
               <CardContentContainer background="#FFFFFF" xTransitionDir="left" yTransitionDir="none" half="verticle" swapEndPos={true}>
                 <div className="w-full h-full flex flex-col justify-evenly p-10">
-                  <div className="text-[Roboto] font-bold text-2xl">
+                  <div className="font-[Roboto] font-bold text-2xl">
                     Sending My Resume via Carrier Pigeon
                   </div>
                   <div className="w-full h-1 scale-x-0 group-hover:scale-x-100 ease-in duration-500 transition-transform  bg-slate-200 rounded-full ">
 
                   </div>
 
-                  <div className="text-[Roboto] text-xl">
+                  <div className="font-[Roboto] text-xl">
                     Designing a shoe for MSCHF and sending it via carrier pigeon 
                   </div>
 
