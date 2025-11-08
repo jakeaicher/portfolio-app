@@ -17,6 +17,7 @@ const Postcard = () => {
     const [scrollFull, setScrollFull] = useState<boolean>(false);
     const [classes, setClasses] = useState<triggerClassResults>({trigger: '', card: ''});
 
+    const [formStatus, setFormStatus] = useState<string | null>(null);
 
     useEffect(() => {
         console.log(b)
@@ -42,6 +43,10 @@ const Postcard = () => {
 
     const pointDown = () => {
         setExpanded(true)
+    }
+
+    const handleFormSubmit = (result : string | null) => {
+        setFormStatus(result);
     }
 
     const triggerClass = (expanded: boolean, b: number): triggerClassResults => {
@@ -112,7 +117,7 @@ const Postcard = () => {
                     }}
                     onPointerDown={(e) => {e.stopPropagation()}}
                     > 
-                        <ContactForm></ContactForm>
+                        <ContactForm onSubmitResult={handleFormSubmit}></ContactForm>
                         
                     </div>
                 

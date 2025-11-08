@@ -1,11 +1,13 @@
 "use client"
 import React, { useState } from "react"
 
+interface ContactFormProps {
+    onSubmitResult:(result: 'success' | 'error') => void,
 
-const ContactForm = () => {
+}
+
+const ContactForm = ({onSubmitResult}:ContactFormProps) => {
     
-    const [result, setResult] = useState("");
-
     const onSubmit = async (event: any) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -13,9 +15,9 @@ const ContactForm = () => {
       method: "POST",
       body: formData,
     });
-
+    
     const data = await response.json();
-    setResult(data.success ? "Success!" : "Error");
+    data.success ? onSubmitResult('success') : onSubmitResult("error");
   };
 
     return (
