@@ -91,10 +91,14 @@ const Postcard = () => {
            
             onPointerDown={() => {expanded ? setExpanded(false) : null}}
             >
-                <div className={'fixed w-full h-full'}
+                {/* ON SEND MESSAGE */}
                 
+                <div className={'fixed w-full h-full flex justify-center items-center'}
                 >
-
+                    <div className={'font-[Roboto]'}
+                    >
+                        {formStatus == 'success' ? "Sent!" : "Not Sent:)"}
+                    </div>
                 </div>
 
                 <div className={`relative w-1/2 h-1/2 shadow flip-card-inner ${classes.card} ${expanded ? "flip" : ''}`}
