@@ -51,7 +51,7 @@ const ContactForm = ({onSubmitResult}:ContactFormProps) => {
                         <label className={'text-left font-[Roboto] my-2 mr-2 text-nowrap'}>Inquiry Type:</label>
                         <select
                         className={'w-full border-2 rounded-sm px-1 py-0.5'}
-                        name="inquiryType" 
+                        name="inquiry type" 
                         >
                             <option>Work With Me</option>
                             <option>Hire Me</option>
