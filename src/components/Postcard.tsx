@@ -1,6 +1,7 @@
 "use client"
 import { useScrollPercent } from "@/hooks/useScrollPercent";
 import exp from "constants";
+import ContactForm from "@/components/ContactForm";
 import { useEffect, useState } from "react";
 
 interface triggerClassResults{
@@ -85,7 +86,12 @@ const Postcard = () => {
            
             onPointerDown={() => {expanded ? setExpanded(false) : null}}
             >
+                <div className={'fixed w-full h-full'}
                 
+                >
+
+                </div>
+
                 <div className={`relative w-1/2 h-1/2 shadow flip-card-inner ${classes.card} ${expanded ? "flip" : ''}`}
                 
                 onPointerDown={pointDown}
@@ -100,11 +106,14 @@ const Postcard = () => {
                     </div>
                     
                     {/* CARD BACK */}
-                    <div className={`absolute w-full h-full bg-stone-100 rounded-md overflow-hidden flip-card-back`}
+                    <div className={`absolute w-full h-full bg-stone-100 rounded-md flip-card-back`}
                     style={{
                     boxShadow: "0 25px 50px 12px rgba(0,0,0,0.2)",
                     }}
+                    onPointerDown={(e) => {e.stopPropagation()}}
                     > 
+                        <ContactForm></ContactForm>
+                        
                     </div>
                 
                 </div>
