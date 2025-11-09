@@ -3,46 +3,54 @@ import { useScrollPercent } from "@/hooks/useScrollPercent";
 import exp from "constants";
 import ContactForm from "@/components/ContactForm";
 import { useEffect, useState } from "react";
+import { start } from "repl";
 
 interface triggerClassResults{
     trigger: string,
     card: string,
 }
 
+interface PostCardProps{
+    start?: number,
+    half?: number,
+    end?: number,
+}
+
 type FormCardState = 'collapsed' | 'expanded';
 
-const Postcard = () => {
-    let b = useScrollPercent().scrollPercentage
+type ScrollState = 'start' | 'half' | 'end';
+;
+
+const Postcard = ({start=0, half=50, end=90}:PostCardProps) => {
+    let scrollPercent = useScrollPercent().scrollPercentage
     let overlay = true; //temporarily disables overlay for WIP
-    const [expanded, setExpanded] = useState<boolean>(false);
     const [PostcardState, setPostcardState] = useState<FormCardState>('collapsed')
-    const [scrollHalf, setScrollHalf] = useState<boolean>(false);
-    const [scrollFull, setScrollFull] = useState<boolean>(false);
+    const [scrollState, setScrollState] = useState<ScrollState>('start');
     const [classes, setClasses] = useState<triggerClassResults>({trigger: '', card: ''});
 
     const [formStatus, setFormStatus] = useState<string | null>(null);
 
     useEffect(() => {
-        console.log(b)
-        if(b > 50){ //the scroll is above 50%
-            setScrollHalf(true)
-        } else {
-            setScrollHalf(false)
-        }
 
-        if(b > 90){ //the scroll is above 90%
-            setScrollFull(true)
-        } else {
-            setScrollFull(false)
-        }
+        if(scrollPercent < half){ //scroll is below 50%
+            setScrollState('start')
+        } 
+
+        if(scrollPercent > half){ //scroll is above 50%
+            setScrollState('half')
+        } 
+
+        if(scrollPercent > end){ //scroll is above 90%
+            setScrollState('end')
+        } 
         
-    }, [b])
+    }, [scrollPercent])
 
     useEffect(() => {
 
-        setClasses(triggerClass(PostcardState,b))
+        setClasses(triggerClass(PostcardState,scrollState))
 
-    }, [PostcardState, scrollHalf, scrollFull])
+    }, [PostcardState, scrollState])
 
     const pointDown = () => {
         setPostcardState('expanded')
@@ -52,17 +60,16 @@ const Postcard = () => {
         setFormStatus(result);
     }
 
-    const triggerClass = (state: FormCardState, b: number): triggerClassResults => {
+    const triggerClass = (state: FormCardState, scrollState: ScrollState): triggerClassResults => {
         let triggerClasses = ''
         let CardClasses = ''
         
-
         switch(state){
             case "collapsed":
-                if(b < 50){
-                triggerClasses = '-bottom-[101vh] bg-logo-blue/0' 
-                CardClasses = 'top-0 rotate-x-0'
-                } else if (b < 90){
+                if(scrollState === 'start'){
+                    triggerClasses = '-bottom-[101vh] bg-logo-blue/0' 
+                    CardClasses = 'top-0 rotate-x-0'
+                } else if (scrollState === 'half'){
                     triggerClasses = '-bottom-[90vh] bg-logo-blue/0'
                     CardClasses = 'top-1/2 group-hover:top-0'
                 } else {
@@ -77,7 +84,6 @@ const Postcard = () => {
 
             default:
                 break;
-
 
         }
 
