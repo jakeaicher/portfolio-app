@@ -40,23 +40,23 @@ const Postcard = () => {
 
     useEffect(() => {
 
-        setClasses(triggerClass(expanded,b))
+        setClasses(triggerClass(PostcardState,b))
 
-    }, [expanded, scrollHalf, scrollFull])
+    }, [PostcardState, scrollHalf, scrollFull])
 
     const pointDown = () => {
-        setExpanded(true)
+        setPostcardState('expanded')
     }
 
     const handleFormSubmit = (result : string | null) => {
         setFormStatus(result);
     }
 
-    const triggerClass = (expanded: boolean, b: number): triggerClassResults => {
+    const triggerClass = (state: FormCardState, b: number): triggerClassResults => {
         let triggerClasses = ''
         let CardClasses = ''
         
-        if (expanded){
+        if (state === 'expanded'){
             triggerClasses = 'bottom-0 bg-logo-blue/90'
             CardClasses = 'top-1/2 -translate-y-1/2'
         } else {
@@ -92,7 +92,7 @@ const Postcard = () => {
             <div className={`fixed w-full h-full flex flex-wrap bg-logo-blue flip-card ${classes.trigger} z-10 group justify-center transition-all duration-500`}
             
            
-            onPointerDown={() => {expanded ? setExpanded(false) : null}}
+            onPointerDown={() => {PostcardState === 'expanded' ? setPostcardState('collapsed') : null}}
             >
                 {/* ON SEND MESSAGE */}
                 
@@ -104,7 +104,7 @@ const Postcard = () => {
                     </div>
                 </div>
 
-                <div className={`relative w-1/2 h-1/2 shadow flip-card-inner ${classes.card} ${expanded ? "flip" : ''}`}
+                <div className={`relative w-1/2 h-1/2 shadow flip-card-inner ${classes.card} ${PostcardState === 'expanded' ? "flip" : ''}`}
                 
                 onPointerDown={pointDown}
                 >
