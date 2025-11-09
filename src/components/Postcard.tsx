@@ -56,20 +56,29 @@ const Postcard = () => {
         let triggerClasses = ''
         let CardClasses = ''
         
-        if (state === 'expanded'){
-            triggerClasses = 'bottom-0 bg-logo-blue/90'
-            CardClasses = 'top-1/2 -translate-y-1/2'
-        } else {
-            if(b < 50){
+
+        switch(state){
+            case "collapsed":
+                if(b < 50){
                 triggerClasses = '-bottom-[101vh] bg-logo-blue/0' 
                 CardClasses = 'top-0 rotate-x-0'
-            } else if (b < 90){
-                triggerClasses = '-bottom-[90vh] bg-logo-blue/0'
-                CardClasses = 'top-1/2 group-hover:top-0'
-            } else {
-                triggerClasses = '-bottom-[90vh] bg-logo-blue/0'
-                CardClasses = 'top-0 group-hover:-top-10'
-            } 
+                } else if (b < 90){
+                    triggerClasses = '-bottom-[90vh] bg-logo-blue/0'
+                    CardClasses = 'top-1/2 group-hover:top-0'
+                } else {
+                    triggerClasses = '-bottom-[90vh] bg-logo-blue/0'
+                    CardClasses = 'top-0 group-hover:-top-10'
+                } 
+                break;
+            case "expanded":
+                triggerClasses = 'bottom-0 bg-logo-blue/90'
+                CardClasses = 'top-1/2 -translate-y-1/2'
+                break;
+
+            default:
+                break;
+
+
         }
 
         return {
