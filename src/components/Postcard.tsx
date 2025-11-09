@@ -9,10 +9,13 @@ interface triggerClassResults{
     card: string,
 }
 
+type FormCardState = 'collapsed' | 'expanded';
+
 const Postcard = () => {
     let b = useScrollPercent().scrollPercentage
     let overlay = true; //temporarily disables overlay for WIP
     const [expanded, setExpanded] = useState<boolean>(false);
+    const [PostcardState, setPostcardState] = useState<FormCardState>('collapsed')
     const [scrollHalf, setScrollHalf] = useState<boolean>(false);
     const [scrollFull, setScrollFull] = useState<boolean>(false);
     const [classes, setClasses] = useState<triggerClassResults>({trigger: '', card: ''});
