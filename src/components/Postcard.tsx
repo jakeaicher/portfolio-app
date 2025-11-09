@@ -16,7 +16,7 @@ interface PostCardProps{
     end?: number,
 }
 
-type FormCardState = 'collapsed' | 'expanded';
+type FormCardState = 'collapsed' | 'expanded' | 'sent';
 
 type ScrollState = 'start' | 'half' | 'end';
 ;
@@ -47,6 +47,12 @@ const Postcard = ({start=0, half=50, end=90}:PostCardProps) => {
     }, [scrollPercent])
 
     useEffect(() => {
+        if(formStatus === 'success') {
+            setPostcardState('sent')
+        }
+    },[formStatus])
+
+    useEffect(() => {
 
         setClasses(triggerClass(PostcardState,scrollState))
 
@@ -57,7 +63,7 @@ const Postcard = ({start=0, half=50, end=90}:PostCardProps) => {
     }
 
     const handleFormSubmit = (result : string | null) => {
-        setFormStatus(result);
+        setFormStatus(result); 
     }
 
     const triggerClass = (state: FormCardState, scrollState: ScrollState): triggerClassResults => {
@@ -81,7 +87,11 @@ const Postcard = ({start=0, half=50, end=90}:PostCardProps) => {
                 triggerClasses = 'bottom-0 bg-logo-blue/90'
                 CardClasses = 'top-1/2 -translate-y-1/2'
                 break;
-
+            
+            case 'sent':
+                triggerClasses = 'top-0 bg-logo-blue/0'
+                CardClasses = 'top-0 -translate-y-full'
+                break;
             default:
                 break;
 
