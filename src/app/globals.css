@@ -111,32 +111,6 @@
   transition: all 100ms ease-in-out;
 }
 
-/* CONTACT CARD FLIP */
-
-.flip-card {
-  perspective: 1000px;
-}
-
-.flip-card-inner {
-  transition: all 500ms;
-  transform-style: preserve-3d;
-}
-
-.flip {
-  transform: rotateX(-0.5turn);
-}
-
-
-.flip-card-front, .flip-card-back {
--webkit-backface-visibility: hidden;
-backface-visibility: hidden;
-}
-
-
-.flip-card-back {
-  transform: rotateX(.5turn) translateZ(1px)
-}
-
 body {
   color: var(--foreground);
   background: var(--background);

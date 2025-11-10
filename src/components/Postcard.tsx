@@ -114,7 +114,7 @@ const Postcard = ({start=0, half=50, end=90}:PostCardProps) => {
 
             {/* TRIGGER ZONE - for triggering the expansion and hover effects */}
 
-            <div className={`fixed w-full h-full flex flex-wrap bg-logo-blue flip-card ${classes.trigger} z-10 group justify-center transition-all duration-500`}
+            <div className={`fixed w-full h-full flex flex-wrap bg-logo-blue perspective-distant ${classes.trigger} z-10 group justify-center transition-all duration-500`}
             
            
             onPointerDown={() => {PostcardState === 'expanded' ? setPostcardState('collapsed') : null}}
@@ -129,13 +129,13 @@ const Postcard = ({start=0, half=50, end=90}:PostCardProps) => {
                     </div>
                 </div>
 
-                <div className={`relative w-1/2 h-1/2 shadow flip-card-inner ${classes.card} ${PostcardState === 'expanded' ? "flip" : ''}`}
+                <div className={`relative w-1/2 h-1/2 shadow transition-all transform-3d duration-500 ${classes.card} ${PostcardState === 'expanded' ? "-rotate-x-180" : ''}`}
                 
                 onPointerDown={pointDown}
                 >
 
                     {/* CARD FRONT */}
-                    <div className={`absolute w-full h-full bg-[#f2e2b7] rotate-x-0 rounded-md overflow-hidden flip-card-front`}
+                    <div className={`absolute w-full h-full bg-[#f2e2b7] rotate-x-0 rounded-md overflow-hidden backface-hidden`}
                     style={{
                     boxShadow: "0 25px 50px -12px rgba(0,0,0,0.2)",
                     }}
@@ -143,7 +143,7 @@ const Postcard = ({start=0, half=50, end=90}:PostCardProps) => {
                     </div>
                     
                     {/* CARD BACK */}
-                    <div className={`absolute w-full h-full bg-stone-100 rounded-md flip-card-back`}
+                    <div className={`absolute w-full h-full bg-stone-100 rounded-md backface-hidden rotate-x-180`}
                     style={{
                     boxShadow: "0 25px 50px 12px rgba(0,0,0,0.2)",
                     }}
