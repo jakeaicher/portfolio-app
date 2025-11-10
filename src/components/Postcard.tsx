@@ -73,24 +73,24 @@ const Postcard = ({start=0, half=50, end=90}:PostCardProps) => {
         switch(state){
             case "collapsed":
                 if(scrollState === 'start'){
-                    triggerClasses = '-bottom-[101vh] bg-logo-blue/0' 
+                    triggerClasses = '-bottom-[101vh]' 
                     CardClasses = 'top-0 rotate-x-0'
                 } else if (scrollState === 'half'){
-                    triggerClasses = '-bottom-[90vh] bg-logo-blue/0'
+                    triggerClasses = '-bottom-[90vh]'
                     CardClasses = 'top-1/2 group-hover:top-0'
                 } else {
-                    triggerClasses = '-bottom-[90vh] bg-logo-blue/0'
+                    triggerClasses = '-bottom-[90vh]'
                     CardClasses = 'top-0 group-hover:-top-10'
                 } 
                 break;
             case "expanded":
-                triggerClasses = 'bottom-0 bg-logo-blue/90'
+                triggerClasses = 'bottom-0'
                 CardClasses = 'top-1/2 -translate-y-1/2'
                 break;
             
             case 'sent':
-                triggerClasses = 'top-0 bg-logo-blue/0'
-                CardClasses = 'top-0 -translate-y-full'
+                triggerClasses = 'top-0'
+                CardClasses = 'top-0 -translate-y-full rotate-y-180'
                 break;
             default:
                 break;
@@ -107,14 +107,14 @@ const Postcard = ({start=0, half=50, end=90}:PostCardProps) => {
     return (
         <>
             {/* BACKGROUND OVERLAY - for when the contact form is expanded */}
-            {/* <div className={`fixed w-full h-full bg-logo-blue z-50 ${expanded ? "block bg-opacity-90" : "hidden bg-opacity-0"} transition-all`}
+            <div className={`fixed w-full h-full z-10 bg-logo-blue/0 transition-all duration-500 delay-500 ${PostcardState === 'expanded' ? "visible block bg-logo-blue/90" : "invisible"}`}
             
             >
-            </div> */}
+            </div>
 
             {/* TRIGGER ZONE - for triggering the expansion and hover effects */}
 
-            <div className={`fixed w-full h-full flex flex-wrap bg-logo-blue perspective-distant ${classes.trigger} z-10 group justify-center transition-all duration-500`}
+            <div className={`fixed w-full h-full flex flex-wrap perspective-distant ${classes.trigger} z-10 group justify-center transition-all duration-500`}
             
            
             onPointerDown={() => {PostcardState === 'expanded' ? setPostcardState('collapsed') : null}}
