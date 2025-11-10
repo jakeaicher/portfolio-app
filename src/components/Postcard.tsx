@@ -89,8 +89,8 @@ const Postcard = ({start=0, half=50, end=90}:PostCardProps) => {
                 break;
             
             case 'sent':
-                triggerClasses = 'top-0'
-                CardClasses = 'top-0 -translate-y-full rotate-y-180'
+                triggerClasses = 'bottom-full'
+                CardClasses = 'top-1/2 -translate-y-full rotate-y-180'
                 break;
             default:
                 break;
@@ -107,18 +107,9 @@ const Postcard = ({start=0, half=50, end=90}:PostCardProps) => {
     return (
         <>
             {/* BACKGROUND OVERLAY - for when the contact form is expanded */}
-            <div className={`fixed w-full h-full z-10 bg-logo-blue/0 transition-all duration-500 delay-500 ${PostcardState === 'expanded' ? "visible block bg-logo-blue/90" : "invisible"}`}
-            
+            <div className={`fixed w-full h-full z-10 bg-logo-blue transition-all duration-500 delay-1000 opacity-0 ${PostcardState === 'expanded' ? "visible opacity-90" : "invisible"}`}
             >
-            </div>
 
-            {/* TRIGGER ZONE - for triggering the expansion and hover effects */}
-
-            <div className={`fixed w-full h-full flex flex-wrap perspective-distant ${classes.trigger} z-10 group justify-center transition-all duration-500`}
-            
-           
-            onPointerDown={() => {PostcardState === 'expanded' ? setPostcardState('collapsed') : null}}
-            >
                 {/* ON SEND MESSAGE */}
                 
                 <div className={'fixed w-full h-full flex justify-center items-center'}
@@ -128,6 +119,16 @@ const Postcard = ({start=0, half=50, end=90}:PostCardProps) => {
                         {formStatus == 'success' ? "Sent!" : "Not Sent:)"}
                     </div>
                 </div>
+            </div>
+
+            {/* TRIGGER ZONE - for triggering the expansion and hover effects */}
+
+            <div className={`fixed w-full h-full flex flex-wrap perspective-distant ${classes.trigger} z-10 group justify-center transition-all duration-500`}
+            
+           
+            onPointerDown={() => {PostcardState === 'expanded' ? setPostcardState('collapsed') : null}}
+            >
+                
 
                 <div className={`relative w-1/2 h-1/2 shadow transition-all transform-3d duration-500 ${classes.card} ${PostcardState === 'expanded' ? "-rotate-x-180" : ''}`}
                 
